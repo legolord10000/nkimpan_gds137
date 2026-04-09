@@ -8,24 +8,43 @@ var interval = 1000/60
 canvas = document.getElementById("canvas");
 context = canvas.getContext("2d");
 
-player = new Player();
-player.vx=8;
+player = new GameObject(100,canvas.height/2,100,100,"#00ffff");
+player.vx=0;
 player.vy=0;
-player.x =5;
-player.y = 100;
+
+npc1 = new GameObject(300,canvas.height/2,100,100,"#00ff00")
+npc2 = new GameObject(600,canvas.height/2,100,100,"#0000ff")
+npc3 = new GameObject(900,canvas.height/2,100,100,"#FF00ff")
+
 
 timer = setInterval(animate, interval);
 
 function animate()
 {
     context.clearRect(0,0,canvas.width,canvas.height);
-    player.move();
-    if (player.x > canvas.width + player.width/2)
+    
+    if (d)
     {
-        player.x = -player.width/2
-        
+        player.x += 4
+    }
+    if (a)
+    {
+        player.x -= 4
+    }
+      if (w)
+    {
+        player.x += 4
+    }
+    if (s)
+    {
+        player.x -= 4
     }
 
-    player.draw();   
+
+    player.drawRect();   
+    npc1.drawCircle();  
+    npc2.drawCircle();  
+    npc3.drawRect();  
+
 }
 

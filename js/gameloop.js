@@ -31,15 +31,46 @@ function animate()
     {
         player.x -= 4
     }
-      if (w)
+     if (w)
     {
-        player.x += 4
+        player.y += 4
     }
     if (s)
     {
-        player.x -= 4
+        player.y -= 4
     }
 
+    player.move();
+    if (player.x > canvas.width+ player.width/2)
+        {
+            player.x = -player.width/2
+        }
+ 
+       // NPC1 collision
+    if (npc1.collisionCheck(player))
+        {
+            npc1.color = "#ffff00"
+        }
+    else
+        {
+            npc1.color = "#00ff00"
+        }
+    // NPC2 collision
+     if (npc2.collisionCheck(player))
+        {
+            context.strokeRect(npc2.x-npc2.width/2, npc2.y-npc2.height/2, npc2.width,npc2.height)
+        }
+        // NPC3 collision
+     if (npc3.collisionCheck(player))
+        {
+            player.x = player.prevX
+            player.y = player.prevY
+        }
+        else
+        {
+            player.prevX = player.x;
+            player.prevY = player.y;
+        }
 
     player.drawRect();   
     npc1.drawCircle();  
